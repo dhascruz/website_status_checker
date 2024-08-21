@@ -1,0 +1,120 @@
+
+{% load static %}
+
+{% include 'includes/header.html' %}
+
+    <body class="">
+      
+        {% include 'includes/sidenav.html' %}
+
+        <div class="page-wrapper">
+            <!-- Top Bar Start -->
+
+            {% include 'includes/top_bar.html' %}
+          
+            <!-- Top Bar End -->
+
+            <!-- Page Content-->
+          
+
+
+            <div class="page-content">
+                <div class="container-fluid">
+                    <!-- Page-Title -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-title-box">
+                                <div class="row">
+                                    <div class="col">
+                                        <h4 class="page-title">Dashboard</h4>
+                                        <ol class="breadcrumb">
+                                            
+                                            <li class="breadcrumb-item"><a href="javascript:void(0);">Patients</a></li>
+                                            <li class="breadcrumb-item active">Patients List</li>
+                                        </ol>
+                                    </div><!--end col-->
+                                    <div class="col-auto align-self-center">
+                                        <a href="#" class="btn btn-sm btn-outline-primary" id="Dash_Date">
+                                            <span class="day-name" id="Day_Name">Today:</span>&nbsp;
+                                            <span class="" id="Select_date">Jan 11</span>
+                                            <i data-feather="calendar" class="align-self-center icon-xs ms-1"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-sm btn-outline-primary">
+                                            <i data-feather="download" class="align-self-center icon-xs"></i>
+                                        </a>
+                                    </div><!--end col-->  
+                                </div><!--end row-->                                                              
+                            </div><!--end page-title-box-->
+                        </div><!--end col-->
+                    </div><!--end row-->
+                  
+    
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                   
+                                </div><!--end card-header-->
+                                <div class="card-body">  
+                                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                        <thead>
+                                        <tr>
+                        <th>id</th>
+                        <th>Full Name</th>
+                        <th>Mobile Number</th>
+                        <th>Email</th>
+                        
+                        <th>Action</th>
+                                        </tr>
+                                        </thead>
+    
+    
+                                        <tbody>
+                    {% for patient in patients %}
+                        <tr>
+                            <td>{{ patient.id }}</td>
+                            <td>{{ patient.name }}</td>
+                            <td>{{ patient.mobile_number }}</td>
+                            <td>{{ patient.email }}</td>
+                            
+                            
+                            
+                            <td>
+                                <a class="btn btn-sm btn-warning" href="doc_edit/{{ patient.id }}/edit"> <span class="fa fa-edit"></span> Edit</a>
+                                <a class="btn btn-sm btn-danger" href="doc_delete/{{ patient.id }}"><span class="fa fa-trash"></span> Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+
+                                        </tbody>
+                                    </table>        
+                                </div>
+                            </div>
+                        </div> <!-- end col -->
+                    </div> <!-- end row -->
+
+                  
+
+            
+
+                </div><!-- container -->
+
+              
+
+
+
+
+
+            <!--page content start-->
+
+
+
+
+
+            {% include 'includes/footer.html' %}  
+    
+    
+            </body>
+
+</html>

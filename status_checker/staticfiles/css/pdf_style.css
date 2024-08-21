@@ -1,0 +1,106 @@
+@page {
+    margin: 5cm 2cm 5cm 2cm;
+
+    @top-right {
+        content: url("logo.png");
+    }
+
+    @bottom-left {
+        white-space: pre;
+        text-align: left;
+        font-size: 8pt;
+        content: "Pasumai Indhiya" "\a"
+                 "Tecci Park, OMR" "\a"
+                 "Chennai " "\a"
+                 "600092" "\a"
+                 "\a" "\a"
+    }
+
+ 
+
+    @bottom-right {
+        white-space: pre;
+        text-align: left;
+        font-size: 8pt;
+        content: "Pay through Bank" "\a"
+                 "Account No: " "\a"
+                 "IFSC CODe " "\a"
+                 "\a" "\a" "\a"
+                 
+    }    
+}
+
+html {
+    font-size: 10pt;
+    font-family: "Arial";
+}
+
+.section {
+    margin-top: 1cm;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+/**
+ * Address table
+ */
+ .adressTable tr:nth-child(1) td {
+     border-bottom: 1px solid black;
+     margin-left: 5%;
+     margin-right: 5%;
+ }
+
+ .small {
+     font-size: 9pt;
+ }
+ 
+ .regular {
+    font-size: 10pt;
+}
+/**
+ * Info table
+ */
+.infoTable {
+    margin-top: 2cm;
+    width: 100%;
+    
+}
+
+/**
+ * Invoice table
+ */
+.invoiceTable {
+    border-collapse: collapse;
+    width: 100%;
+    
+}
+
+.invoiceTable td {
+    border: 1px solid black;
+    padding: 5px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.invoiceTable thead {
+    background: lightgray;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.invoiceTable .padrow {
+    height: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.invoiceTable .tfoot td {
+    border: none;
+    padding: 2px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.nowrap {
+    white-space: nowrap;
+}

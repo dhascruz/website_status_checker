@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Status</title>
+</head>
+<body>
+    <h1>Website Status List</h1>
+    <table border="1">
+        <tr>
+            <th>Website Name</th>
+            <th>URL</th>
+            <th>Status</th>
+        </tr>
+        {% for website in websites %}
+        <tr>
+            <td>{{ website.name }}</td>
+            <td>{{ website.url }}</td>
+            <td>{{ website.status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
