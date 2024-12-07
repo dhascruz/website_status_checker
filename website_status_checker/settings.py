@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+from celery import Celery
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,10 +28,26 @@ SECRET_KEY = 'django-insecure-n#d+f53+#+jzob#5lmjy-g9*%aw61!)8q8wqsj1!ag)1bquc+5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [ '210.18.177.188','localhost']
 
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'website_status_checker.settings')
+app = Celery('website_status_checker')
 
+app.config_from_object('django.conf:settings', namespace='CELERY')
 # Application definition
+
+
+app.autodiscover_tasks()
+
+@app.task(bind=True)
+def debug_task(self):
+    print(f'Request: {self.request!r}')
+
+# Celery settings
+CELERY_BROKER_URL = 'redis://localhost:6379/0'  # URL for Redis
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -38,11 +57,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'widget_tweaks',
+    'background_task',
     #'tailwind',
 
 
     'status_checker',
 ]
+
+INSTALLED_APPS += ['django_celery_beat']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

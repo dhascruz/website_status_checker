@@ -45,6 +45,10 @@ urlpatterns = [
     path('status/', views.check_status, name='check_status'),
     path('status/add/', views.add_website, name='add_website'),
     path('status/edit/<int:pk>/', views.edit_website, name='edit_website'),
+    path('status/check/<int:pk>/', views.check_website, name='check_status_website'),
+    #path('status/check/<int:pk>/', views.test_web, name='check_status_website'),
     path('status/delete/<int:pk>/', views.delete_website, name='delete_website'),
+    path('bulk_import/', views.bulk_import_view, name='bulk_import'),
+
 
 ]
