@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-n#d+f53+#+jzob#5lmjy-g9*%aw61!)8q8wqsj1!ag)1bquc+5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ '210.18.177.188','localhost']
+ALLOWED_HOSTS = [ '210.18.177.188','localhost','https://webcheck.alpho.net','webcheck.alpho.net','127.0.0.1']
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'website_status_checker.settings')
 app = Celery('website_status_checker')
@@ -157,9 +157,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'staticfiles'),
+]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

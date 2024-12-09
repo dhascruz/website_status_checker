@@ -30,7 +30,7 @@
                                         <ol class="breadcrumb">
                                             
                                             <li class="breadcrumb-item"><a href="javascript:void(0);">Website</a></li>
-                                            <li class="breadcrumb-item active">Website status List</li>
+                                            <li class="breadcrumb-item active">Websites List</li>
                                         </ol>
                                     </div><!--end col-->
                                     <div class="col-auto align-self-center">
@@ -50,20 +50,28 @@
                   
     
                     <div class="row">
-                        
                         <div class="col-12">
                             <div class="card">
                              
-                             
-                                <p><a href="">Add webiste to track</a></p>
-                                
+                                <li class="creat-btn">
+                                    <div class="nav-link">
+                                        <a class=" btn btn-sm btn-soft-primary" href="/status/add" role="button"><i class="fas fa-plus me-2"></i>Add Website to track</a>
+                                    </div>                                
+                                    <div class="nav-rightlink" style="text-align: right;margin-top: -31px;">
+                                        <a class=" btn btn-sm btn-soft-primary" href="/bulk_import" role="button"><i class="fas fa-plus me-2"></i>Bulk Import</a>
+                                    </div>                                
+
+                                </li> 
+
+ 
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="card">
                                             <div class="card-header">
-                                                                                              
+                                               
                                             </div><!--end card-header-->
                                             <div class="card-body">  
+                                                <p>dhas {{alert}}</p>
                                                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                                     <thead>
                                                     <tr>
@@ -81,23 +89,24 @@
 
                                                         {% for website in websites %}
                                                         <tr>
-                                                            <td>{{ website.id }}</td>
+                                                            <td>dhas{{ website.id }}</td>
                                                             <td>{{ website.name }}</td>
                                                             <td>{{ website.url }}</td>
                                                             <td>{{ website.status }}</td>
                                                             <td>
                                                                 <a class="btn btn-sm btn-warning" href="/status/edit/{{ website.id }}/"> <span class="fa fa-edit"></span> Edit</a>
+                                                                <a class="btn btn-sm btn-warning" href="/status/check/{{ website.id }}/"> <span class="fa fa-edit"></span> Status check</a>
                                                                 <a class="btn btn-sm btn-danger" href="/status/delete/{{ website.id }}/"><span class="fa fa-trash"></span> Delete</a>
                                                             
                                                             </td>
                                                         </tr>
                                                         {% endfor %}
-
+                                                        
 
             
             
                                                     </tbody>
-                                                </table>   
+                                                </table>        
                                             </div>
                                         </div>
                                     </div> <!-- end col -->

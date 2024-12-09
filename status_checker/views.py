@@ -11,35 +11,17 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from .forms import *
 from io import StringIO
-
-
 from background_task import background
 
 
 
 def index(request):
     websites = Website.objects.all()
-    # rev_cnt=Transactions.objects.filter(status=1).all().count()
-    # sal_cnt=Transactions.objects.filter(status=2).all().count()
-    # sub_cnt=Transactions.objects.filter(status=3).all().count()
-    # sto_cnt=Transactions.objects.filter(status=4).all().count()
-
-    #today = date.today()
     
-       
-
-    paginator = Paginator(websites, 2000)
-    page = request.GET.get('page')
-    try:
-        websites = paginator.page(page)
-    except PageNotAnInteger:
-        websites = paginator.page(1)
-    except EmptyPage:
-        websites = paginator.page(paginator.num_pages)
     context = {
         'websites': websites,
     }
-    return render(request, 'index.html', context)
+    return render(request, 'home.html', context)
 
 
 
@@ -181,15 +163,17 @@ def check_website_status(website_id):
     return f"Checked {website.url}: {website.status}"
 
 
-@background(schedule=60) 
+
 def check_all_websites():
     websites = Website.objects.all()
     for website in websites:
         try:
+            print(website)
             website = Website.objects.get(id=website.id)
             response = requests.head(website.url, timeout=10)  # Use HEAD request for quick status check
             if response.status_code == 200:
                 website.status = 'Up'
+                print(website.status+"updated")
             else:
                 website.status = f'Down ({response.status_code})'
         except requests.RequestException:

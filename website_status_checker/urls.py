@@ -36,7 +36,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #path('status/', views.check_status, name='check_status'),
 
-    path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    path('', views.index, name='Home'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='logged_out.html'), name='logout'),
     path('password/reset/', auth_views.LoginView.as_view(template_name='login.html'), name='logout'),
@@ -51,4 +51,4 @@ urlpatterns = [
     path('bulk_import/', views.bulk_import_view, name='bulk_import'),
 
 
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
